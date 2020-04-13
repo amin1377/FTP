@@ -1,0 +1,67 @@
+{
+	"logging": {
+		"enable": true,
+		"path": "./logs.log"
+	},
+
+	"accounting":{
+		"enable" : true,
+		"threshold" : 100,
+		"users" : [
+			{
+				"user" : "reza",
+				"size" : 500,
+				"email" : "",
+				"alert" : false
+			},
+			{
+				"user" : "ali",
+				"size" : 5678,
+				"email" : "",
+				"alert" : false
+			},
+			{
+				"user" : "aref",
+				"size" : 1357,
+				"email" : "afzaliaref.aa@gmail.com",
+				"alert" : false
+			},
+			{
+				"user" : "amin",
+				"size" : 2468,
+				"email" : "",
+				"alert" : false
+			}
+		]
+	},
+	"users" :[
+		{
+			"user" : "reza",
+			"password" : "1234"
+		},
+		{
+			"user" : "ali",
+			"password" : "5678"
+		},
+		{
+			"user" : "aref",
+			"password" : "1357"
+		},
+		{
+			"user" : "amin",
+			"password" : "2468"
+		}
+	],
+	"authorization": {
+		"enable": true,
+		"admins": [
+			"aref"
+		],
+		"files": [
+			"file1",
+			"./config.json",
+			"./example.png"
+		]
+	}
+
+}
