@@ -115,7 +115,7 @@ class ConfigFileContainer(object):#TODO:It is not complete
             return
 
         #send username
-        mail_socket.sendall('YW1pbi5tb2hhZ2hlZ2g=\r\n'.encode("utf-8"))#TODO:username
+        mail_socket.sendall('*****************'.encode("utf-8"))#TODO:username
         #resp
         recv_msg = mail_socket.recv(2048)
         if (recv_msg.decode().split()[0] == "334"):
@@ -127,7 +127,7 @@ class ConfigFileContainer(object):#TODO:It is not complete
 
 
         #send pass
-        mail_socket.sendall('U2FkcmFtaW4xMzc5\r\n'.encode("utf-8"))#TODO:pass
+        mail_socket.sendall('*******************'.encode("utf-8"))#TODO:pass
         #resp
         recv_msg = mail_socket.recv(2048)
         if (recv_msg.decode().split()[0] == "235"):
