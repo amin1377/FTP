@@ -263,6 +263,7 @@ class ClientRecord(object):
 
     def decode_password_cmd(self):
         if self.user_name == "":
+            self.write_log(f'Enter Password , Befor User Name : FAILED')
             self.send_by_cmd_channel("503 Bad sequence of commands.")
 
         else:
@@ -270,7 +271,7 @@ class ClientRecord(object):
             if(is_valid == True):
                 self.login_process = 1
                 self.send_by_cmd_channel("230 User logged in, proceed.")
-                self.write_log(f'Enter Password : {self.cmd[1]}, SUCCESSFULL')
+                self.write_log(f'Enter Password : SUCCESSFULL')
 
             else:
                 self.write_log(f'Enter Password , FAILED')
@@ -429,12 +430,14 @@ class ClientRecord(object):
 
         self.write_log(f'Quit')
         self.send_by_cmd_channel("221 Successful Quit.")
-        # self.client_socket_cmd.close()
+        self.client_socket_cmd.close()
 
     def decode_not_login_cmd(self):
         self.send_by_cmd_channel("332 Need account for login.")
 
-    def write_log(self, log_str : str):#TODO: not complete
+    def write_log(self, log_str : str):
+        if(self.log_file == None):
+            return
         header = f'USER : {self.user_name}, month:{time.localtime().tm_mon}, day:{time.localtime().tm_mday},' \
             f' hour:{time.localtime().tm_hour}, min:{time.localtime().tm_min}'
         self.log_file.write(header + "," + log_str + "\n")
@@ -531,9 +534,10 @@ if __name__ == "__main__":
 
         for notified_socket in read_sockets:
             if(notified_socket != server_cmd_socket):
+                socket_name = notified_socket.getpeername()
                 is_quit = clients[notified_socket].decode_cmd()
                 if is_quit:
-                    print(f'client {notified_socket.getsockname()} closed the connection')
+                    print(f'client {socket_name} closed the connection')
                     del clients[notified_socket]
                     cmd_sockets_list.remove(notified_socket)
 

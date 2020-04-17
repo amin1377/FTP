@@ -5,6 +5,7 @@ s_data = socket.socket(family=socket.AF_INET, type=socket.SOCK_STREAM)
 s_cmd.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 cmd_port = int(input("Server port number(for command) is : "))
 s_cmd.connect(("0.0.0.0", cmd_port))
+print(f"client_cmd channel addr {s_cmd.getsockname()}, server addr is : {s_cmd.getpeername()}")
 msg = ""
 s_data.settimeout(5)
 while(msg != "QUIT"):
